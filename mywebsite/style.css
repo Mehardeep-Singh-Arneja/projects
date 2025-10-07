@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* ✅ fixed */
+}
+
+/* Ensure header/nav appear above the background video */
+header, main, footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* 🌈 Navbar Styling */
+nav {
+  position: relative;              /* ✅ stays visible even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(128, 0, 128, 0.4);  /* semi-transparent purple */
+  backdrop-filter: blur(8px);           /* adds glass-like blur */
+  color: white;
+  box-shadow: 0 5px 500px rgb(255, 4, 209);
+}
+
+/* ✅ nav links layout */
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+nav ul li {
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+nav ul li:hover {
+  color: #ffd6ff;
+  transform: translateY(-2px);
+}
+
+/* ✅ Logo text */
+.tuition {
+  display: flex;
+  align-items: center;
+  color: rgb(9, 194, 9);
+  font-size: xx-large;
+  font-weight: 700;
+}
+
+.tuition img {
+  margin-right: 15px;
+}
+
+/* 🌸 Body & main */
+body {
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-top: 100px; /* ✅ Prevent main content from hiding behind fixed nav */
+}
+.call {
+  position: fixed;
+  width: 10rem;
+  height: 3rem;
+  background-color: rgba(255, 228, 196, 0.4);
+  backdrop-filter: blur(5px);
+  left: 40px;
+  bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.call:hover img {
+  animation: calla 1s ease-in-out infinite;
+}
+
+.call.whts{
+  width: 11rem;
+  bottom: 100px;
+}
+
+.call.whts:hover img {
+  animation: whtsa 2s linear infinite;
+}
+
+@keyframes calla {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  20%, 80% {
+    transform: translateY(-20px) rotateZ(-10deg);
+  }
+  30%, 50%, 70% {
+    transform: translateY(-20px) rotateZ(-60deg);
+  }
+  40%, 60% {
+    transform: rotateZ(-30deg) translateY(-20px);
+  }
+}
+
+
+@keyframes whtsa {
+  0%{
+    transform: translateY(0) rotateZ(0deg);
+  }
+  30%{
+    transform: translateY(-20px) rotateZ(0deg);
+  }
+  70% {
+    transform: translateY(-20px) rotateZ(360deg);
+  }
+  100% {
+    transform: translateY(0) rotateZ(360deg);
+  }
+}
+
+
+.call a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 24px;
+  margin-right: 15px;
+}
+
+/* 🎥 Background video */
+.bg-video {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.6);
+}
+
+.details {
+  width: 100%;  
+  margin: 0 auto;
+  height: 55%;
+  position: relative;
+  z-index: -1;
+  background-color: rgb(113, 16, 113);
+  top: 74%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-left: 15rem;
+  padding-right: 5rem;
+}
+
+.details p {
+  color: #ffffff;
+  font-size: x-large;
+  line-height: 1.5;       /* makes text more readable */
+}
+
+@media (max-width: 960px) {
+  .details {
+    top: 80%;
+    height: 77%;
+    padding: 1rem;         /* smaller padding for tiny screens */              /* adjust position if necessary */
+  }
+
+  .details p {
+    font-size: medium;      /* smaller text */
+    line-height: 1.4;       /* better readability */
+    padding: 0 0.5rem;
+    font-size: 20px;      /* avoid text touching edges */
+  }
+  .bg-video {
+    object-fit:fill;
+    width: 130%;
+    left: -15%;
+  }
+  nav{
+    flex-direction: column;
+    height: 90px;
+  }
+}
