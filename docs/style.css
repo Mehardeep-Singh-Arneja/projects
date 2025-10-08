@@ -185,7 +185,7 @@ main {
 
 @media (max-width: 960px) {
   .details {
-    top: 80%;
+    top: 90%;
     height: 77%;
     padding: 1rem;         /* smaller padding for tiny screens */              /* adjust position if necessary */
   }
