@@ -219,7 +219,7 @@ main {
     align-items: center;
     height: 100vh;
     padding-top: 100px;  /* leave space for navbar */
-    overflow: hidden;
+    overflow-y: visible;
   }
 
   /* Details text box */
