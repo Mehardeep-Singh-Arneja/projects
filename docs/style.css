@@ -184,28 +184,78 @@ main {
 }
 
 @media (max-width: 960px) {
-  .details {
-    top: 100%;
-    height: 120%;
-    padding: 1rem;         /* smaller padding for tiny screens */              /* adjust position if necessary */
-  }
-  .tuition {
-    height: 10%;
-  }
-  .details p {
-    font-size: medium;      /* smaller text */
-    line-height: 1.4;       /* better readability */
-    padding: 0 0.5rem;
-    font-size: 20px;      /* avoid text touching edges */
-  }
-  .bg-video {
-    object-fit:fill;
-    width: 130%;
-    left: -15%;
-  }
-  nav{
+
+  /* Make navbar compact and centered */
+  nav {
     flex-direction: column;
     justify-content: center;
-    height: 80px;
+    height: 70px;
+    padding: 0.5rem 1rem;
+  }
+
+  .tuition {
+    font-size: xx-large;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Background video fills viewport */
+  .bg-video {
+    position: fixed;         /* stays behind content */
+    top: 0;
+    left: 0;
+    width: 120vw;
+    transform: translateX(-7%);            /* fill full width */
+    height: 100vh;           /* fill full height */
+    object-fit: fill;        /* stretch video to fill container */
+    z-index: -1;             /* behind content */
+    filter: brightness(0.6); /* optional dark overlay */
+}
+
+
+  /* Main content container */
+  main {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding-top: 100px;  /* leave space for navbar */
+    overflow: hidden;
+  }
+
+  /* Details text box */
+  .details {
+    position: relative;
+    top: 50%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background-color: rgba(113, 16, 113,0.8);  /* semi-transparent */
+    padding: 2rem 1rem;
+    border-radius: 15px;
+  }
+
+  .details p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #ffffff;
+  }
+
+  /* Call & WhatsApp buttons */
+  .call {
+    width: 9rem;
+    height: 3rem;
+    left: 20px;
+    bottom: 20px;
+    font-size: 20px;
+  }
+
+  .call.whts {
+    width: 10rem;
+    bottom: 80px;
+  }
+
+  /* Ensure text doesn't overflow */
+  .details p, .tuition {
+    word-wrap: break-word;
   }
 }
