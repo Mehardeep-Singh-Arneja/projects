@@ -1,3 +1,0 @@
-git add mywebsite/.nojekyll
-git commit -m "Disable Jekyll for Pages"
-git push
