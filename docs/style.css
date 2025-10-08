@@ -222,6 +222,13 @@ main {
     overflow-y: visible;
   }
 
+  body {
+    height: auto;           /* allow content to define page height */
+    min-height: 100vh;      /* ensures minimum height for full screen */
+    overflow-x: hidden;     /* keep horizontal overflow hidden */
+    overflow-y: auto;       /* allow vertical scroll */
+}
+
   /* Details text box */
   .details {
     position: relative;
