@@ -88,10 +88,16 @@ main {
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .call:hover img {
   animation: calla 1s ease-in-out infinite;
+}
+
+.call:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 0px 10px pink;
 }
 
 .call.whts{
@@ -183,7 +189,9 @@ main {
     height: 77%;
     padding: 1rem;         /* smaller padding for tiny screens */              /* adjust position if necessary */
   }
-
+  .tuition {
+    height: 10%;
+  }
   .details p {
     font-size: medium;      /* smaller text */
     line-height: 1.4;       /* better readability */
@@ -197,6 +205,7 @@ main {
   }
   nav{
     flex-direction: column;
-    height: 90px;
+    justify-content: center;
+    height: 80px;
   }
 }
