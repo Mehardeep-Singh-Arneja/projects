@@ -185,8 +185,8 @@ main {
 
 @media (max-width: 960px) {
   .details {
-    top: 90%;
-    height: 77%;
+    top: 100%;
+    height: 120%;
     padding: 1rem;         /* smaller padding for tiny screens */              /* adjust position if necessary */
   }
   .tuition {
