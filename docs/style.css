@@ -66,11 +66,12 @@ body {
   background-color: rgb(0, 0, 0);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -148,7 +149,9 @@ main {
   font-size: 24px;
   margin-right: 15px;
 }
-
+.details p, .tuition {
+    word-wrap: break-word;
+  }
 /* 🎥 Background video */
 .bg-video {
   position: absolute;
@@ -164,21 +167,35 @@ main {
 .details {
   width: 100%;  
   margin: 0 auto;
-  height: 55%;
+  height: auto;
   position: relative;
   z-index: -1;
   background-color: rgb(113, 16, 113);
-  top: 74%;
+  top: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding-left: 15rem;
   padding-right: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.details.fees{
+  display: flex;
+  flex-direction: column;
+  background-color: beige;
 }
 
 .details p {
   color: #ffffff;
+  font-size: x-large;
+  line-height: 1.5;       /* makes text more readable */
+}
+
+.details.fees p {
+  color: #d3945a;
   font-size: x-large;
   line-height: 1.5;       /* makes text more readable */
 }
@@ -193,6 +210,25 @@ main {
     padding: 0.5rem 1rem;
   }
 
+  .call {
+  position: fixed;
+  width: 12rem;
+  padding: 0rem, 1rem;
+  height: 3rem;
+  background-color: rgba(255, 228, 196, 0.4);
+  backdrop-filter: blur(1px);
+  bottom: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.call.whts{
+  width: 11rem;
+  bottom: 20%;
+}
+
   .tuition {
     font-size: xx-large;
     margin-bottom: 0.5rem;
@@ -200,14 +236,14 @@ main {
 
   /* Background video fills viewport */
   .bg-video {
-    position: fixed;         /* stays behind content */
-    top: 0;
-    left: 0;
-    width: 120vw;
-    transform: translateX(-7%);            /* fill full width */
+    position: absolute;         /* stays behind content */
+    top: 8%;
+    left: -24%;
+    width: 150vw;           /* fill full width */
     height: 100vh;           /* fill full height */
     object-fit: fill;        /* stretch video to fill container */
-    z-index: -1;             /* behind content */
+    z-index: -1;    
+    overflow-x: visible;         /* behind content */
     filter: brightness(0.6); /* optional dark overlay */
 }
 
@@ -226,19 +262,18 @@ main {
     height: auto;           /* allow content to define page height */
     min-height: 100vh;      /* ensures minimum height for full screen */
     overflow-x: hidden;     /* keep horizontal overflow hidden */
-    overflow-y: auto;       /* allow vertical scroll */
+    overflow-y: visible;       /* allow vertical scroll */
 }
 
   /* Details text box */
   .details {
     position: relative;
-    top: 50%;
+    top: 90%;
     width: 100%;
     height: auto;
     margin: 0 auto;
-    background-color: rgba(113, 16, 113,0.8);  /* semi-transparent */
     padding: 2rem 1rem;
-    border-radius: 15px;
+    border-radius: 0px;
   }
 
   .details p {
