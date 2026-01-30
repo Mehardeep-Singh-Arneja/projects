@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Bungee&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav><p>Marks Calculator</p></nav>
+    </header>
+    <main>
+            <form class="f">
+
+            <div class="sec">
+                <p>Please enter marks of students :</p>
+                <textarea name="text_a" id="ta" rows="10"></textarea>
+                <p>Please enter total marks of exam :</p>
+                <input type="number" id="totalMarks">
+            </div>
+
+            <div class="sec hidden">
+                <pre>Students above 95% : <span class="ab95"></span></pre>
+                <p>Students between 90% - 94.9%    : <span class="bet90_95"></span></p>
+                <p>Students between 80% - 89.9%    : <span class="bet80_90"></span></p>
+                <p>Students between 70% - 79.9%    : <span class="bet70_80"></span></p>
+                <p>Students between 60% - 69.9%    : <span class="bet60_70"></span></p>
+                <pre>Students below 60% : <span class="bel60"></span></pre>
+                <p>Total Students : <span class="totalStudents"></span></p>
+                <p>Highest Marks : <span class="highestMarks"></span></p>
+                <p>Lowest Marks : <span class="lowestMarks"></span></p>
+                <p>Average Marks : <span class="avgMarks"></span></p>
+                <p>Marks = 100% : <span class="fullMarks"></span></p>
+
+            </div>
+
+
+            </form>
+            <button id="analyzeBtn" type="button" class="analyze-btn">
+            Analyze
+            </button>
+    </main>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
