@@ -1,0 +1,205 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --light : #e75874;
+    --lightest : #fbcbc9;
+    --dark : #be1558;
+}
+
+html{
+    overflow-y: hidden;
+}
+
+nav{
+    background-color: var(--lightest);
+    padding: 1rem;
+    font-family: "Bungee";
+    color: var(--dark);
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+main{
+    background-color: var(--light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:91vh;
+    padding: 1rem;
+}
+
+.f{
+    padding: 2rem;
+    background-color: var(--lightest);
+    max-width: 29rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 30px;
+    font-family: "Roboto";
+    transition: max-width 1s ease-in-out;
+    justify-content: left;
+}
+
+.sec{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.sec p {
+    font-family: "Bungee";
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.sec pre {
+    font-family: "Bungee";
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.sec.hidden {
+    opacity: 0;
+    max-height: 0;
+    max-width: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.sec.hidden.show {
+    opacity: 1;
+    max-height: 100%;
+    max-width: max-content;
+    pointer-events: auto;
+    justify-content: center;
+    margin-left: 3rem;
+}
+
+form input {
+    width: 100%;
+    max-width: 20rem;
+    border-radius: 20px;
+    background-color: var(--dark);
+    font-size: 22px;
+    padding: 1rem;
+    color: var(--lightest);
+    border-width: 0;
+}
+
+textarea{
+    resize: none;
+    width: 100%;
+    max-width: 20rem;
+    border-radius: 5px;
+    font-size: 22px;
+    padding: 1rem;
+    background-color: var(--dark);
+    color: var(--lightest);
+    border-width: 0;
+}
+
+.f.animate-once {
+    max-width: 55rem;
+}
+
+#analyzeBtn{
+    background-color: var(--dark);
+    color: var(--lightest);
+    border-radius: 5px;
+    font-size: 22px;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--lightest);
+    cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    nav {
+        font-size: 1.5rem;
+        padding: 0.75rem;
+    }
+    html{
+    overflow-y:visible;
+    }
+
+    main {
+        height: auto;
+        padding: 0.5rem;
+        height:140vh;
+    }
+
+    .f {
+        padding: 1.5rem;
+        max-width: 100%;
+        border-radius: 20px;
+        flex-direction: column;
+    }
+
+    .f.animate-once {
+        max-width: 100%;
+    }
+
+    .sec p,
+    .sec pre {
+        font-size: 16px;
+    }
+
+    .sec.hidden.show {
+        margin-left: 0;
+        margin-top: 1.5rem;
+    }
+
+    form input,
+    textarea {
+        font-size: 18px;
+        padding: 0.875rem;
+        max-width: 100%;
+    }
+
+    #analyzeBtn {
+        font-size: 18px;
+        padding: 0.875rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        font-size: 1.25rem;
+        padding: 0.5rem;
+    }
+
+    .f {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    .sec p,
+    .sec pre {
+        font-size: 14px;
+        word-wrap: break-word;
+    }
+
+    form input,
+    textarea {
+        font-size: 16px;
+        padding: 0.75rem;
+    }
+
+    #analyzeBtn {
+        font-size: 16px;
+        padding: 0.75rem;
+    }
+}
