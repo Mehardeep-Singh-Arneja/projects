@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define len_queue 50 // author -> mehardeep cs ds 1
+#define len_queue 50
 #define mat_len 20
 
 int arr[mat_len][mat_len] = {
