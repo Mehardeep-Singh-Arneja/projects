@@ -1,8 +1,12 @@
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-
-from diff import Unet, Diffusion
+from diff_practice import Unet, Diffusion
 import torch
+from flask import Flask, request, send_file, jsonify
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
 
 def loss_plot():
     checkpoint = torch.load("dmodel_v1.pt", map_location="cuda")
@@ -50,19 +54,21 @@ def sample(model, diff, y, n=16):
 
     return x
 
-def sample_images(digit=None):
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    checkpoint = torch.load(
-        "dmodel_v1.pt",
-        map_location=device
-    )
+checkpoint = torch.load(
+    "dmodel_v1.pt",
+    map_location=device
+)
 
-    model = Unet().to(device)
-    model.load_state_dict(checkpoint["model"])
-    model.eval()
+model = Unet().to(device)
+model.load_state_dict(checkpoint["model"])
+model.eval()
+diff = Diffusion().to(device)
 
-    diff = Diffusion().to(device)
+@app.route("/diffusion",methods = ["POST"])
+def sample_images():
+    digit = request.get_json()["number"]
 
     n = 5
     if digit is None:
@@ -76,15 +82,20 @@ def sample_images(digit=None):
     images = (images + 1) / 2
 
     fig, axes = plt.subplots(1, 5, figsize=(6, 2))
-
     for ax, img, label in zip(axes.flat, images, y.cpu()):
         ax.imshow(img[0].cpu(), cmap="gray")
-        ax.set_title(str(label.item()), fontsize=9)
+        ax.set_title("")
         ax.axis("off")
 
-    plt.tight_layout()
-    plt.show()
+    plt.savefig("gen_img.png")
+    return jsonify({
+        "digit":digit,
+        "image":"/gentd"
+    })
 
+@app.route("/gentd",methods = ["GET"])
+def gen_img():
+    return send_file("gen_img.png")
 
-# loss_plot()
-sample_images(digit=9)
+if __name__ == '__main__':
+    app.run("0.0.0.0",5000)
