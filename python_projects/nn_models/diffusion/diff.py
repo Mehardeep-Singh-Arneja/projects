@@ -144,15 +144,24 @@ class Unet(nn.Module):
         x = self.final(x)
         return x
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
+checkpoint = torch.load(
+    "dmodel_v1.pt",
+    map_location=device
+)
+
 def train():
     model = Unet().cuda()
+    model.load_state_dict(checkpoint["model"])
     diff = Diffusion().cuda()
     tr = vs.transforms
     trans = tr.Compose([tr.ToTensor(), tr.Normalize((0.5,), (0.5,)), tr.Resize(64)])
     data = vs.datasets.MNIST("data", train=True, transform=trans, download=True)
     loader = utils.DataLoader(data, 32, True,
                               num_workers=4, persistent_workers=True)
-    optimizer = torch.optim.AdamW(model.parameters(),lr=1e-4,weight_decay=1e-4)
+    optimizer = torch.optim.AdamW(model.parameters(),lr=8e-05,weight_decay=1e-4)
+    optimizer.load_state_dict(checkpoint["optimizer"])
 
     criterion = nn.MSELoss()
     scaler = torch.amp.GradScaler("cuda")
@@ -161,7 +170,7 @@ def train():
     data_len = len(loader)
     warmup_steps = data_len
     total_steps = epochs * data_len
-    warmup = torch.optim.lr_scheduler.LinearLR(optimizer, start_factor=1e-3, total_iters=warmup_steps)
+    warmup = torch.optim.lr_scheduler.LinearLR(optimizer, start_factor=1e-5, total_iters=warmup_steps)
     cosine = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=total_steps - warmup_steps, eta_min=1e-6)
     scheduler = torch.optim.lr_scheduler.SequentialLR(optimizer, schedulers=[warmup, cosine], milestones=[warmup_steps])
     for epoch in range(epochs):
